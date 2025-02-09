@@ -9,12 +9,14 @@ const PORT = 8080;
 const prisma = new PrismaClient();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
+    allowedHeaders: ["Content-Type"],
+    exposedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'], 
+    credentials: true,
 }));
 
 
@@ -33,7 +35,7 @@ app.post("/api/form", async (req, res) => {
                 name: name,
                 email: email
             }
-        })
+        });
 
         await SendMailToUser(email); 
         return res.status(201).json({ message: "User data was successfully sent to the database" });
