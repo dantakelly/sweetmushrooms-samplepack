@@ -46,5 +46,5 @@ app.post("/api/form", async (req, res) => {
 
 
 app.listen(PORT, () => { 
-    console.log(`Your server is running on http://localhost:${PORT}`)
+    console.log(`Your server is running on ${PORT}`)
 })
