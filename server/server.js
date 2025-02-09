@@ -35,12 +35,12 @@ app.post("/api/form", async (req, res) => {
             }
         })
 
-        if(res.status(200).json({message: "User data was successfully sent to the database"}) || res.status(201).json({message: "User data was successfully sent to the database"})) {
-            await SendMailToUser(email)
-        }
+        await SendMailToUser(email); 
+        return res.status(201).json({ message: "User data was successfully sent to the database" });
 
     } catch(error) { 
-        res.status(500).json("Backend Error", error)
+        console.error("Error:", error);
+        return res.status(500).json({ error: "Backend Error", details: error.message });
     }
 })
 
