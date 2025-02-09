@@ -17,7 +17,7 @@ export default function Main() {
     event.preventDefault(); 
 
     try {
-      axios.post('http://localhost:8080/api/form', { 
+      axios.post('https://sweetmushrooms-samplepack-server.vercel.app/api/form', { 
         name: name,
         email: email,
       })

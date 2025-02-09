@@ -9,10 +9,10 @@ const PORT = 8080;
 const prisma = new PrismaClient();
 
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://sweetmushrooms-samplepack-client.vercel.app"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     exposedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'], 
