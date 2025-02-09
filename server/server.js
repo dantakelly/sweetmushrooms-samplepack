@@ -35,7 +35,7 @@ app.post("/api/form", async (req, res) => {
             }
         })
 
-        // await SendMailToUser(email); 
+        await SendMailToUser(email); 
         return res.status(201).json({ message: "User data was successfully sent to the database" });
 
     } catch(error) { 
