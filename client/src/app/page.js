@@ -12,6 +12,7 @@ export default function Main() {
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const SubmitForm = (event) => { 
     event.preventDefault(); 
@@ -25,10 +26,7 @@ export default function Main() {
         console.log("Success", response.data);
         setName("")
         setEmail("")
-        
-        setTimeout(() => {
-          alert("Check your email");
-         }, 0);
+        setSuccess(true)
       })
     } catch(error) {
       console.error(error)
@@ -36,42 +34,51 @@ export default function Main() {
     }
   }
 
-  return(<>
-    <div id="parent-container-all">
+  return(
+    <>
+      <div id="parent-container-all">
         <div id="BACKGROUND"></div>
 
         <div id="content-container">
 
-            <div className="info">
+          {!success ? (
+            <>
+              <div className="info">
                 <h1>Sweet Mushrooms Sample Pack - Demo</h1>
                 <p>The Sweet Mushrooms Sample pack will be one of the best and most exciting sound pack projects I've ever created. 
-                   While the pack is still in development, as I want to ensure a high-quality product, I’d like to share some freebies 
-                   with you all. Enjoyyy!"
+                  While the pack is still in development, as I want to ensure a high-quality product, I’d like to share some freebies 
+                  with you all. Enjoyyy!"
                 </p>
-            </div>
+              </div>
 
-            <div className="the-form-section">
-            <div className="pack-image">
-                <Image src={packCover} width={999} height={999} alt="Sample Pack Demo Image" />
-            </div>
-              <form onSubmit={SubmitForm}> 
+              <div className="the-form-section">
+                <div className="pack-image">
+                  <Image src={packCover} width={999} height={999} alt="Sample Pack Demo Image" />
+                </div>
+                <form onSubmit={SubmitForm}> 
                   <input
                     placeholder="Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                  ></input>
+                  />
                   <input
                     placeholder="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                  ></input>
+                  />
                   <button type="submit">Get Demo</button>
                 </form>
-          </div>
-        <p style={{color: "white", fontSize: "8px"}}>By signing up for your free demo, you agree to receive updates on upcoming sound-packs from Cultertraz.</p>
-    </div>
-</div>
-  </>)
+              </div>
+              <p style={{color: "white", fontSize: "8px"}}>By signing up for your free demo, you agree to receive updates on upcoming sound-packs from Cultertraz.</p>
+            </>
+          ) : (
+            <h2 style={{fontWeight: 'bolder'}}>The "Sweet Mushrooms Sample Pack - Demo" has been sent to your email! ☺️</h2>
+          )}
+
+        </div>
+      </div>
+    </>
+  )
 }
